@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ช่องทางการชำระเงิน - Chubby Sky</title>
+    <!-- ฟอนต์น่ารักๆ สไตล์มินิมอล -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Mitr:wght@300;400;500&display=swap" rel="stylesheet">
@@ -37,7 +38,7 @@
             padding: 16px;
         }
 
-        /* กล่องการ์ดหลักขนาดพอดีมือถือ โค้งมนนุ่มฟู */
+        /* การ์ดสไตล์มือถือ โค้งมน modern */
         .payment-box {
             width: 100%;
             max-width: 380px;
@@ -51,7 +52,6 @@
             outline-offset: -8px;
         }
 
-        /* โลโก้และหัวข้อ */
         .icon-header {
             font-size: 2.5rem;
             margin-bottom: 8px;
@@ -73,4 +73,230 @@
         .subtitle {
             font-size: 0.85rem;
             color: var(--text-sub);
-            margin-bottom: 20px
+            margin-bottom: 20px;
+        }
+
+        /* ส่วนสรุปยอดเงิน */
+        .amount-summary {
+            background-color: var(--pastel-yellow);
+            border-radius: 20px;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 2px dashed #E6DFB8;
+        }
+        .amount-label {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+        .amount-value {
+            font-family: 'Fredoka', 'Mitr', sans-serif;
+            font-size: 1.6rem;
+            color: #E295B3;
+            font-weight: bold;
+        }
+
+        /* การ์ดช่องทางชำระเงิน */
+        .method-card {
+            background-color: #F7FAFC;
+            border: 2px solid var(--pastel-blue-light);
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 16px;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .method-card:hover {
+            border-color: var(--pastel-blue);
+            background-color: var(--white);
+        }
+
+        .method-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--pastel-blue-dark);
+            margin-bottom: 12px;
+        }
+
+        .method-icon {
+            width: 28px;
+            height: 28px;
+            background-color: var(--pastel-blue-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2px;
+            margin-bottom: 10px;
+        }
+
+        .info-value {
+            font-family: 'Fredoka', 'Mitr', sans-serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        .account-name {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            background-color: rgba(162, 210, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        /* ปุ่มคัดลอกพาสเทล */
+        .btn-copy {
+            background-color: var(--pastel-blue-light);
+            border: none;
+            color: var(--pastel-blue-dark);
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background-color: var(--pastel-blue);
+            color: var(--white);
+        }
+
+        /* ปุ่ม LINE */
+        .btn-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #06C755;
+            color: var(--white);
+            padding: 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 14px;
+            box-shadow: 0 4px 12px rgba(6, 199, 85, 0.2);
+            transition: all 0.2s;
+        }
+
+        .btn-line:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Toast แจ้งเตือนคัดลอก */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--pastel-blue-dark);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+            opacity: 0;
+            z-index: 999;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-box">
+        <div class="icon-header">☁️</div>
+        <h2>ช่องทางการชำระเงิน</h2>
+        <div class="subtitle">โอนเงินเข้าบัญชีตามรายละเอียดด้านล่างได้เลยน้า</div>
+
+        <!-- ยอดเงินที่ต้องจ่าย -->
+        <div class="amount-summary">
+            <div class="amount-label">ยอดเงินที่ต้องชำระ</div>
+            <div class="amount-value">490 ฿</div>
+        </div>
+
+        <!-- 1. ช่องทางธนาคาร -->
+        <div class="method-card">
+            <div class="method-title">
+                <div class="method-icon">🏦</div>
+                <span>ธนาคารกสิกรไทย (KBank)</span>
+            </div>
+            <div class="info-label">เลขที่บัญชี</div>
+            <div class="info-value-row">
+                <span class="info-value" id="kbank-num">095-8-12345-6</span>
+                <button class="btn-copy" onclick="copyText('kbank-num')">คัดลอก</button>
+            </div>
+            <div class="info-label" style="margin-bottom: 2px;">ชื่อบัญชี</div>
+            <div class="account-name">น.S. นุ่มฟู ใจดี</div>
+        </div>
+
+        <!-- 2. ช่องทางพร้อมเพย์ -->
+        <div class="method-card">
+            <div class="method-title">
+                <div class="method-icon">📱</div>
+                <span>พร้อมเพย์ (PromptPay)</span>
+            </div>
+            <div class="info-label">เบอร์โทรศัพท์พร้อมเพย์</div>
+            <div class="info-value-row">
+                <span class="info-value" id="pp-num">089-123-4567</span>
+                <button class="btn-copy" onclick="copyText('pp-num')">คัดลอก</button>
+            </div>
+            <div class="info-label" style="margin-bottom: 2px;">ชื่อบัญชี</div>
+            <div class="account-name">น.S. นุ่มฟู ใจดี</div>
+        </div>
+
+        <!-- ปุ่มแจ้งโอนเงิน -->
+        <div style="font-size: 0.8rem; color: var(--text-sub); margin-top: 20px;">
+            <p>โอนเงินเรียบร้อยแล้ว แวะมาส่งสลิป<br>แจ้งชื่อที่อยู่ให้เค้าใน LINE หน่อยน้า 🥺</p>
+            <a href="https://line.me" class="btn-line" target="_blank">
+                <span>💚 ส่งสลิปแจ้งโอนเงินทาง LINE</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ข้อความเตือนเมื่อคัดลอกสำเร็จ -->
+    <div class="toast" id="toast-msg">คัดลอกเลขบัญชีแล้วเย้! 🩵</div>
+
+    <script>
+        function copyText(elementId) {
+            var textToCopy = document.getElementById(elementId).innerText.replace(/-/g, "");
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                var toast = document.getElementById("toast-msg");
+                toast.classList.add("show");
+                setTimeout(function() {
+                    toast.classList.remove("show");
+                }, 2000);
+            }).catch(function(err) {
+                alert("ก๊อปปี้ไม่ได้ รบกวนกดคัดลอกเองน้า");
+            });
+        }
+    </script>
+
+</body>
+</html>
