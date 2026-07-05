@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chubby Sky - ร้านขนมและของแต่งบ้านสไตล์พาสเทล</title>
-    <!-- นำเข้าฟอนต์น่ารักๆ ละมุนๆ จาก Google Fonts -->
+    <title>ช่องทางการชำระเงิน - Chubby Sky</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Mitr:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. Reset & Global Styles --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -18,412 +16,61 @@
         }
 
         :root {
-            --primary-blue: #A2D2FF;
-            --light-blue: #E8F4F8;
-            --dark-blue: #5B8FB9;
+            --pastel-blue-dark: #6CA6CD;
+            --pastel-blue: #A2D2FF;
+            --pastel-blue-light: #EBF4FA;
             --pastel-pink: #FFC8DD;
             --pastel-yellow: #FEF9E7;
-            --text-color: #4A5568;
+            --text-main: #4A5568;
+            --text-sub: #718096;
             --white: #FFFFFF;
         }
 
         body {
             font-family: 'Mitr', sans-serif;
-            background-color: var(--light-blue);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-bottom: 80px; /* เผื่อพื้นที่ให้ปุ่ม Line ด้านล่าง */
-        }
-
-        h1, h2, h3 {
-            font-family: 'Fredoka', 'Mitr', sans-serif;
-            color: var(--dark-blue);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 16px;
-        }
-
-        /* --- 2. Layout Containers --- */
-        .container {
-            width: 100%;
-            max-width: 480px; /* ล็อกขนาดหน้าจอให้อยู่ในสัดส่วนมือถือที่อ่านง่าย */
-            margin: 0 auto;
-            background-color: var(--white);
+            background-color: var(--pastel-blue-light);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(91, 143, 185, 0.1);
-            overflow: hidden;
-        }
-
-        section {
-            padding: 32px 20px;
-        }
-
-        /* --- 3. Component Styles --- */
-        .section-title {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 24px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background-color: var(--pastel-pink);
-            border-radius: 4px;
-            z-index: -1;
-            opacity: 0.6;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 12px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            box-shadow: 0 4px 10px rgba(162, 210, 255, 0.4);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(162, 210, 255, 0.6);
-        }
-
-        /* --- 4. Header Section --- */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
-            background-color: var(--white);
-            border-bottom: 2px dashed var(--primary-blue);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.2rem;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-
-        .brand-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        /* --- 5. Hero Section --- */
-        .hero {
-            background: linear-gradient(180deg, var(--white) 0%, var(--pastel-yellow) 100%);
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: 0 0 40px 40px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background-color: var(--pastel-pink);
-            color: #555;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .hero p {
-            font-size: 0.95rem;
-            color: #718096;
-            margin-bottom: 24px;
-        }
-
-        /* --- 6. Products Section --- */
-        .products {
-            background-color: var(--white);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .product-card {
-            background-color: var(--light-blue);
-            border-radius: 24px;
-            padding: 12px;
-            text-align: center;
-            border: 1px solid rgba(162, 210, 255, 0.2);
-        }
-
-        /* ตัวจำลองรูปสินค้าแบบ CSS วาดรูปน่ารักๆ แทนการใช้ไฟล์ภาพภายนอก */
-        .product-img-placeholder {
-            width: 100%;
-            height: 120px;
-            background-color: var(--white);
-            border-radius: 16px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
-        }
-
-        .product-card h3 {
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .product-price {
-            color: var(--dark-blue);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        /* --- 7. Reviews Section --- */
-        .reviews {
-            background-color: #FAF9F6;
-            border-radius: 40px 40px 0 0;
-        }
-
-        .review-container {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .review-card {
-            background-color: var(--white);
-            border-radius: 20px;
             padding: 16px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            border-left: 5px solid var(--pastel-pink);
         }
 
-        .review-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .user-avatar {
-            width: 32px;
-            height: 32px;
-            background-color: var(--primary-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        .user-info h4 {
-            font-size: 0.9rem;
-            color: #2D3748;
-        }
-
-        .stars {
-            color: #FFD166;
-            font-size: 0.8rem;
-        }
-
-        .review-card p {
-            font-size: 0.85rem;
-            color: #718096;
-        }
-
-        /* --- 8. Floating Line Button --- */
-        .line-sticky-wrapper {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            z-index: 999;
-            pointer-events: none; /* เพื่อไม่ให้บังการคลิกส่วนอื่นนอกปุ่ม */
-        }
-
-        .btn-line {
-            pointer-events: auto; /* เปิดให้ปุ่มคลิกได้ปกติ */
-            background-color: #06C755; /* สีแบรนด์ LINE */
-            color: var(--white);
-            padding: 14px 32px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 8px 20px rgba(6, 199, 85, 0.4);
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-        }
-
-        .btn-line:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 24px rgba(6, 199, 85, 0.5);
-        }
-
-        .line-icon {
-            font-weight: bold;
+        /* กล่องการ์ดหลักขนาดพอดีมือถือ โค้งมนนุ่มฟู */
+        .payment-box {
+            width: 100%;
+            max-width: 380px;
             background-color: var(--white);
-            color: #06C755;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-        }
-
-        /* --- Footer --- */
-        footer {
+            border-radius: 32px;
+            box-shadow: 0 12px 30px rgba(108, 166, 205, 0.15);
+            padding: 28px 24px;
             text-align: center;
-            padding: 24px;
-            background-color: var(--white);
-            font-size: 0.8rem;
-            color: #A0AEC0;
-            border-top: 1px solid #E2E8F0;
+            border: 3px solid var(--white);
+            outline: 2px dashed var(--pastel-blue);
+            outline-offset: -8px;
         }
-    </style>
-</head>
-<body>
 
-    <!-- ใช้คลาส container บีบหน้าจอให้เป็นสัดส่วน Mobile-First ดูง่ายบนทุกอุปกรณ์ -->
-    <div class="container">
-        
-        <!-- Header Section -->
-        <header>
-            <div class="logo-icon">☁️</div>
-            <div class="brand-name">Chubby Sky</div>
-        </header>
+        /* โลโก้และหัวข้อ */
+        .icon-header {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            animation: float 3s ease-in-out infinite;
+        }
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <span class="hero-badge">Pre-Order Now 💫</span>
-            <h1>เติมความละมุน<br>ให้ใจฟูทุกๆ วัน</h1>
-            <p>รวมของตกแต่งบ้านและขนมโฮมเมดคราฟต์ สไตล์มินิมอลพาสเทล คัดสรรความน่ารักมาให้คุณโดยเฉพาะ</p>
-            <a href="#shop" class="btn">ดูสินค้าทั้งหมด</a>
-        </section>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
 
-        <!-- Products Section -->
-        <section class="products" id="shop">
-            <h2 class="section-title">สินค้าแนะนำ</h2>
-            
-            <div class="product-grid">
-                <!-- สินค้า 1 -->
-                <div class="product-card">
-                    <div class="product-img-placeholder">🕯️</div>
-                    <h3>เทียนหอมก้อนเมฆ</h3>
-                    <div class="product-price">159.-</div>
-                </div>
-                
-                <!-- สินค้า 2 -->
-                <div class="product-card">
-                    <div class="product-img-placeholder">🥛</div>
-                    <h3>แก้วเซรามิกทิวลิป</h3>
-                    <div class="product-price">220.-</div>
-                </div>
+        h2 {
+            font-family: 'Fredoka', 'Mitr', sans-serif;
+            color: var(--pastel-blue-dark);
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
 
-                <!-- สินค้า 3 -->
-                <div class="product-card">
-                    <div class="product-img-placeholder">🍪</div>
-                    <h3>คุ้กกี้เนยสดหมีน้อย</h3>
-                    <div class="product-price">89.-</div>
-                </div>
-
-                <!-- สินค้า 4 -->
-                <div class="product-card">
-                    <div class="product-img-placeholder">จานพาสเทล</div>
-                    <h3>จานพาสเทลโค้งมน</h3>
-                    <div class="product-price">185.-</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reviews Section -->
-        <section class="reviews">
-            <h2 class="section-title">รีวิวจากลูกค้า</h2>
-            
-            <div class="review-container">
-                <!-- รีวิว 1 -->
-                <div class="review-card">
-                    <div class="review-user">
-                        <div class="user-avatar" style="background-color: var(--pastel-pink);">M</div>
-                        <div class="user-info">
-                            <h4>คุณ มะเหมี่ยว</h4>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                    <p>เทียนหอมน่ารักมากค่ะ กลิ่นแป้งเด็กหอมละมุนสุดๆ แพ็กเกจจิ้งก็น่ารักจนไม่กล้าแกะเลย ไว้จะอุดหนุนอีกนะคะ!</p>
-                </div>
-
-                <!-- รีวิว 2 -->
-                <div class="review-card">
-                    <div class="review-user">
-                        <div class="user-avatar">T</div>
-                        <div class="user-info">
-                            <h4>คุณ ต้นกล้า</h4>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                    <p>ส่งไวมากครับ แก้วเซรามิกหนาและลงสีเนียนดีมาก แฟนเห็นแล้วชอบมากครับ เอาไปห้าดาวเลย</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2026 Chubby Sky คลับของคนรักความพาสเทล</p>
-        </footer>
-
-    </div>
-
-    <!-- Floating Line Button (ปุ่มติดต่อไลน์ลอยอยู่ด้านล่างสุดของจอ) -->
-    <div class="line-sticky-wrapper">
-        <a href="https://line.me/R/ti/p/@yourlineid" class="btn-line" target="_blank">
-            <span class="line-icon">LINE</span>
-            <span>สั่งซื้อ/สอบถามทาง LINE</span>
-        </a>
-    </div>
-
-</body>
-</html>
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 20px
