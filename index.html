@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ช่องทางการชำระเงิน</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, -apple-system, BlinkMacSystemFont;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        /* กล่องการ์ดหลัก */
+        .payment-card {
+            width: 100%;
+            max-width: 380px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+        }
+
+        /* ส่วนหัว */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h2 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* กล่องข้อมูลช่องทางชำระเงิน */
+        .payment-method {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .method-title {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 12px;
+        }
+
+        /* จุดสีบอกธนาคาร (ปรับสีตามต้องการ) */
+        .bank-badge {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+        }
+        .bg-kbank { background-color: #138043; } /* กสิกร */
+        .bg-promptpay { background-color: #002d63; } /* พร้อมเพย์ */
+
+        .info-row {
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .account-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        /* ปุ่มคัดลอก */
+        .btn-copy {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #64748b;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background-color: #f1f5f9;
+            color: #334155;
+            border-color: #94a3b8;
+        }
+
+        .btn-copy:active {
+            transform: scale(0.95);
+        }
+
+        /* หมายเหตุท้ายการ์ด */
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 20px;
+            line-height: 1.4;
+        }
+
+        /* Toast แจ้งเตือนเวลาคัดลอก */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: #1e293b;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease-in-out;
+            opacity: 0;
+            z-index: 999;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-card">
+        <div class="header">
+            <h2>ชำระเงิน</h2>
+            <p>กรุณาเลือกช่องทางชำระเงินด้านล่าง</p>
+        </div>
+
+        <!-- ช่องทางที่ 1: บัญชีธนาคาร -->
+        <div class="payment-method">
+            <div class="method-title">
+                <span class="bank-badge bg-kbank"></span>
+                ธนาคารกสิกรไทย (KBank)
+            </div>
+            <div class="info-row">
+                <div class="info-label">เลขที่บัญชี</div>
+                <div class="info-value-wrap">
+                    <span class="info-value" id="acc-bank">123-4-56789-0</span>
+                    <button class="btn-copy" onclick="copyText('acc-bank')">คัดลอก</button>
+                </div>
+            </div>
+            <div class="info-row" style="margin-bottom: 0;">
+                <div class="info-label">ชื่อบัญชี</div>
+                <div class="account-name">บริษัท ดีดี จำกัด</div>
+            </div>
+        </div>
+
+        <!-- ช่องทางที่ 2: พร้อมเพย์ -->
+        <div class="payment-method">
+            <div class="method-title">
+                <span class="bank-badge bg-promptpay"></span>
+                พร้อมเพย์ (PromptPay)
+            </div>
+            <div class="info-row">
+                <div class="info-label">เบอร์โทรศัพท์ หรือ เลขบัตรประชาชน</div>
+                <div class="info-value-wrap">
+                    <span class="info-value" id="acc-pp">089-123-4567</span>
+                    <button class="btn-copy" onclick="copyText('acc-pp')">คัดลอก</button>
+                </div>
+            </div>
+            <div class="info-row" style="margin-bottom: 0;">
+                <div class="info-label">ชื่อบัญชี</div>
+                <div class="account-name">บริษัท ดีดี จำกัด</div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            เมื่อโอนเงินเรียบร้อยแล้ว <br>กรุณาส่งสลิปหลักฐานการโอนเงินเพื่อยืนยัน
+        </div>
+    </div>
+
+    <!-- ข้อความเตือนเมื่อกดคัดลอก -->
+    <div class="toast" id="toast">คัดลอกข้อความแล้ว!</div>
+
+    <script>
+        function copyText(elementId) {
+            // ดึงข้อความและตัดเครื่องหมายขีด (-) ออกเพื่อให้ลูกค้าเอาไปใช้วางในแอปธนาคารได้ง่ายขึ้น
+            var textToCopy = document.getElementById(elementId).innerText.replace(/-/g, "");
+            
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                var toast = document.getElementById("toast");
+                toast.classList.add("show");
+                
+                setTimeout(function() {
+                    toast.classList.remove("show");
+                }, 2000);
+            }).catch(function(err) {
+                alert("ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาครอบดำเพื่อคัดลอกเอง");
+            });
+        }
+    </script>
+
+</body>
+</html>
